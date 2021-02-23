@@ -1,0 +1,21 @@
+.title-container {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #1e252e;
+    color: #b4ffe2;
+    padding: 1.4rem;
+    font-size: 2rem;
+    cursor: pointer;
+    min-width: 300px;
+
+}
+
+
+
+@media screen and (min-width:100px) {
+
+    .title-container {max-width: 300px}
+
+}
