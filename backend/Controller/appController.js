@@ -30,9 +30,12 @@ module.exports.title_delete = async (req, res) => {
 
 module.exports.title_find = async (req,res) => {
 
-    const find = await Guide.find((err, result) => {
+    const {_id} = req.body;
+
+    const find = await Guide.find({_id},(err, result) => {
         return !err ? res.header(200).json(result) : ''
     })
 
+    console.log(find);
 
 }

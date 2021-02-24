@@ -4,7 +4,7 @@ import './Title.scss'
 function Title({titles}) {
     return (
         <div className='title-container'>
-            {titles}
+            {titles.title}
         </div>
     )
 }
