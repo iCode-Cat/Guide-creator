@@ -1,4 +1,17 @@
 .title-content-container {
-    background: red;
-    min-height: 500px;
+    
+    min-height: 86vh;
+    max-height: 86vh;
+    padding: 1rem;
+    overflow: auto;
+}
+
+.content-container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    
 }

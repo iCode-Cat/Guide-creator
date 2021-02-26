@@ -4,12 +4,30 @@
     display: flex;
     flex-direction: column;
     gap: 3px;
+    max-height: 82vh;
+   overflow: auto;
+   width: 330px;
+   max-width: 330px;
+   button {
+    width: 300px;
+    max-width: 300px;
+    cursor: pointer;
+  
+   }
+}
+
+.titles-input{
+    width: 300px;
+   max-width: 300px;
+   
 }
 
 .titles-holder{
     display: flex;
     flex-direction: column;
     gap: 2px;
+    
+    
 }
 
 .title-content-holder {
@@ -22,3 +40,4 @@
    
 
 }
+

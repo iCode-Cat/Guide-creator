@@ -8,17 +8,28 @@ import {fetchPosts} from '../Redux/actions/routerAction';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './Titles.scss';
+
+
+
 function Titles({setContent}) {
 
-
-
-    useEffect(()=>{
-
+    const titleFetchHandler = () => {
         axios.get('http://localhost:5000/title')
-        .then((res) => setTitle(res.data))
-        
-
+            .then((res) => setTitle(res.data))
+    }
+    useEffect(()=>{
+        titleFetchHandler()
     }, [])
+
+
+    const titlePostHandler = async (title) => {
+
+       const post = await axios.post('http://localhost:5000/title', {title})
+       titleFetchHandler()
+
+    }
+
+
     const [title, setTitle] = useState([])
     //Title input value
     const titleValue = useRef(null);
@@ -34,10 +45,10 @@ function Titles({setContent}) {
     }
 
     return (
-        <section className="titles-container">
+        <section className="titles-container titles">
         <input ref={titleValue} type="text" className="titles-input"/>
-            <button onClick={()=>{setTitle([...title, titleValue.current.value])}}>ADD</button>
-        {title.length !== 0 ? printTitle(): 'NO CONTENT'}
+            <button onClick={()=>{if(titleValue.current.value !== ''){titlePostHandler(titleValue.current.value)}}}>ADD</button>
+        {title.length !== 0 ? printTitle(): <h1 style={{textAlign:'center'}}>NO TITLE</h1>}
         
         </section>
     )

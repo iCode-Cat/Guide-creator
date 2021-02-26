@@ -4,7 +4,7 @@ import './Header.scss'
 function Header() {
 
     return (
-        <header className="header-container">
+        <header className="header-container header">
 
         <div className="header-logo">GUIDE CREATOR</div>
         
