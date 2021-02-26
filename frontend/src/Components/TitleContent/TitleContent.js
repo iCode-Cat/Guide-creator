@@ -9,7 +9,17 @@ function TitleContent({setContent, content}) {
     let find = 'find'
     const [contents , setContents ] = useState(null);
     const [resId , setResId] = useState();
-    const [query, setQuery] = useState(null);
+    const [queries, setQuery] = useState(null);
+    const [removeContent , setRemoveContent] = useState(0)
+
+
+    //Remove content
+  const alerts = (id) => {
+      const removeCompoent = queries.filter((a)=>a._id !== id);
+      setQuery(removeCompoent)
+  }
+
+    console.log(removeContent);
 
     useEffect(()=>{
         setResId(content.content.content) 
@@ -50,7 +60,6 @@ function TitleContent({setContent, content}) {
     }
 
 
-    console.log(query);
 
     //print content
     const contentHandler = () => {
@@ -59,7 +68,7 @@ function TitleContent({setContent, content}) {
             
             return <div className="content-container">
             <button onClick={()=>{createComponentHandler(contents._id)}}>Create Component</button>
-                {query ? query.map((query)=><SingleContent query={query} />) : <h1>NONE</h1>}
+                {queries ? queries.map((query)=><SingleContent alerts={alerts} setRemoveContent={setRemoveContent} queries={queries} setQuery={setQuery} key={query._id} query={query} />) : <h1>NONE</h1>}
             </div> 
             
         }

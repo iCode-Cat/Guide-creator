@@ -77,8 +77,22 @@ const find = await Content.find((err, response)=>{
 
  module.exports.content_delete = async (req, res) => {
 
+    const {single, _id} = req.body
+
+   const deleteMany = () => {
     Content.deleteMany((err,result)=>{
         return !err ? res.header(200).send('ALL DELETED!'):res.header(400).send(err)
     })
+   }
+
+    const deleteSingle = () => {
+        Content.deleteOne({_id}, (err,result)=>{
+            return !err ? res.header(200).send('SINGLE POST DELETED!'):res.header(400).send(err)
+        })
+    }
+
+
+    // Conditinol deleting
+    return !single ? deleteMany() : deleteSingle();
  
  }
