@@ -45,10 +45,12 @@ module.exports.title_find = async (req,res) => {
 }
 
 //Content API
-module.exports.content_put = async (req, res) => {
 
-   const {_id} = req.body;
-   const update = Guide.findByIdAndUpdate
+//Update the content
+module.exports.content_put = async (req, res) => {
+   const {_id, title, content} = req.body;
+   const update = await Content.findByIdAndUpdate(_id , {toggle_title:title, content:content})
+    console.log(req.body);
 
 }
 

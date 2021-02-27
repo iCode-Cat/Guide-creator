@@ -39,8 +39,7 @@ function TitleContent({setContent, content}) {
     const createComponentHandler = async (title_id) => {
 
         //If find exist query else post
-        
-        
+    
 
        try {
         const create = await axios.post('http://localhost:5000/content', {title_id});
@@ -59,8 +58,8 @@ function TitleContent({setContent, content}) {
         console.log(data);
     }
 
-
-
+   
+   
     //print content
     const contentHandler = () => {
 
@@ -68,7 +67,7 @@ function TitleContent({setContent, content}) {
             
             return <div className="content-container">
             <button onClick={()=>{createComponentHandler(contents._id)}}>Create Component</button>
-                {queries ? queries.map((query)=><SingleContent alerts={alerts} setRemoveContent={setRemoveContent} queries={queries} setQuery={setQuery} key={query._id} query={query} />) : <h1>NONE</h1>}
+                {queries ? queries.map((query)=><SingleContent alerts={alerts} setRemoveContent={setRemoveContent}  key={query._id} query={query} />) : <h1>NONE</h1>}
             </div> 
             
         }

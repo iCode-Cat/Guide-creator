@@ -8,7 +8,7 @@
 
         background: #1e252e;
         color: #fff;
-        padding: 1rem;
+        padding: 2rem;
 
         &-title-holder{
             display: flex;
@@ -23,10 +23,18 @@
         }
 
         &-icons {
-            display: flex;
+            display: none;
             gap: 20px;
         }
 
+    }
+    
+    //Content style
+    p{
+        padding-top: 1rem;
+        font-size: 1.8rem;
+        font-weight: 300;
+        
     }
     
 }
