@@ -22,3 +22,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a {
+  text-decoration: none;
+  background: #1e252e;
+  color: #b4ffe2;
+}
+
+/* Active class */
+.active {
+
+  color: rgb(160, 153, 253) !important;
+
+}

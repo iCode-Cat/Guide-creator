@@ -6,9 +6,10 @@
     .single-content{
 
 
-        background: #1e252e;
-        color: #fff;
-        padding: 2rem;
+        background: #fff;
+        color: #333;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.294);
+        padding: 1rem;
 
         &-title-holder{
             display: flex;
@@ -23,19 +24,19 @@
         }
 
         &-icons {
-            display: none;
+            display: flex;
             gap: 20px;
         }
 
     }
-    
-    //Content style
-    p{
-        padding-top: 1rem;
-        font-size: 1.8rem;
-        font-weight: 300;
-        
-    }
+
+    .content{ display: none; padding-top: 1rem; font-size: 1.8rem; font-weight: 300; } 
     
 }
 
+.title-container-toggle { display: flex; align-items: center; gap: 20px; } 
+
+
+// //toggle 
+// .title-container-toggle { display: flex; align-items: center; gap: 20px; } 
+.show-content{ display: block !important; }

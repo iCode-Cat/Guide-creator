@@ -8,9 +8,11 @@ function SingleContent({query, alerts}) {
 
     //Conditional Hover
     const [hover , setHover] = useState(false);
+    const [toggle , setToggle] = useState(false);
 
-const title = useRef();
-const content = useRef();    
+    //Ref vars
+    const title = useRef();
+    const content = useRef();    
 
     //Delete content
     const contentDeleteHandler = async (_id) => {
@@ -40,18 +42,30 @@ const content = useRef();
     }
 
 
+    //toggle func
+    const toggleContentHandler = () => {
+
+       return <p className={`${toggle ? 'show-content':''} content`} contentEditable dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(query.content)}} ref={content}></p>
+
+    }
+
+    //Check whether title h
+    
     return (
         <div className="single-content-container" onMouseMove={()=>setHover(true)} onMouseLeave={()=>setHover(false)} >
             <div className="single-content">
             <div className="single-content-title-holder">
+            <div className="title-container-toggle">
+            <i class="far fa-plus-square" onClick={()=>{setToggle(!toggle)}}></i>
             <h1 contentEditable ref={title} onClick={(e)=>{console.log(e.target.innerHTML)}}>{query.toggle_title}</h1>
+            </div>
             <div className={`single-content-icons ${hover === true && 'hover'}`}>
-            <i class="fas fa-save" onClick={()=>updateHandler(query._id, title.current.innerHTML, content.current.innerHTML)}></i>
-            <i class="fas fa-edit"></i>
-            <i class="fas fa-trash-alt" onClick={()=>{contentDeleteHandler(query._id);}}></i>
+            <i title='save the changes' class="fas fa-save" onClick={()=>updateHandler(query._id, title.current.innerHTML, content.current.innerHTML)}></i>
+            <i title='edit' class="fas fa-edit"></i>
+            <i   title='delete' class="fas fa-trash-alt" onClick={()=>{contentDeleteHandler(query._id);}}></i>
             </div>
             </div>
-            <p contentEditable dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(query.content)}} ref={content}></p>
+            {toggleContentHandler()}
             </div>
         </div>
     )

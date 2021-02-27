@@ -26,8 +26,12 @@ module.exports.title_put = (req, res) => {
     
     res.send('PUT')
 }
+
 module.exports.title_delete = async (req, res) => {
-    const deleteAll = await Guide.deleteMany((err, result) => {
+
+   const {_id} = req.body;
+
+    const deleteAll = await Guide.deleteOne({_id}, (err, result) => {
         return !err ? res.send('ALL DATA HAS BEEN DELETED!') : res.send(err)
     })
 }
@@ -79,7 +83,8 @@ const find = await Content.find((err, response)=>{
 
  module.exports.content_delete = async (req, res) => {
 
-    const {single, _id} = req.body
+    const {single, _id, all, title_id} = req.body
+    console.log(all);
 
    const deleteMany = () => {
     Content.deleteMany((err,result)=>{
@@ -88,9 +93,15 @@ const find = await Content.find((err, response)=>{
    }
 
     const deleteSingle = () => {
-        Content.deleteOne({_id}, (err,result)=>{
-            return !err ? res.header(200).send('SINGLE POST DELETED!'):res.header(400).send(err)
-        })
+        if(all) {
+            Content.deleteMany({title_id}, (err,result)=>{
+                return !err ? res.header(200).send('SINGLE POST DELETED!'):res.header(400).send(err)
+            })
+        }else {
+            Content.deleteOne({_id}, (err,result)=>{
+                return !err? res.header(200).send('SINGLE POST DELETED!'):res.header(400).send(err)
+            })
+        }
     }
 
 
