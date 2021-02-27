@@ -5,7 +5,8 @@ import './TitleContent.scss'
 import axios from 'axios';
 import SingleContent from './SingleContent/SingleContent';
 
-function TitleContent({setContent, content}) {
+function TitleContent({setContent, content,history}) {
+    
     let find = 'find'
     const [contents , setContents ] = useState(null);
     const [resId , setResId] = useState();
@@ -22,12 +23,13 @@ function TitleContent({setContent, content}) {
     console.log(removeContent);
 
     useEffect(()=>{
-        setResId(content.content.content) 
+        return content.content.content !== null ? setResId(content.content.content) :  setResId(history.location.pathname.replace('/', ''))
     })
 
 
    //Find id
     useEffect(()=>{
+     
         axios.post('http://localhost:5000/find', {_id:resId})
         .then((res) => setContents(...res.data))
         findComponentHandler(resId, find)
