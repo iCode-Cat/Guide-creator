@@ -11,9 +11,8 @@ const Main = () => {
     return (
         <div className="main-container">
              <BrowserRouter>
-            <Header className='header'/>
             <Titles className='titles'/>
-             <Route path='/:id' component={TitleContent}/>
+             <Route exact path='/:id' component={TitleContent}/>
             </BrowserRouter>
         </div>
     )

@@ -56,13 +56,13 @@ function SingleContent({query, alerts}) {
             <div className="single-content">
             <div className="single-content-title-holder">
             <div className="title-container-toggle">
-            <i class="far fa-plus-square" onClick={()=>{setToggle(!toggle)}}></i>
-            <h1 contentEditable ref={title} onClick={(e)=>{console.log(e.target.innerHTML)}}>{query.toggle_title}</h1>
+            <i className="far fa-plus-square" onClick={()=>{setToggle(!toggle)}}></i>
+            <h1 className="single-content-header" contentEditable ref={title} onClick={(e)=>{console.log(e.target.innerHTML)}}>{query.toggle_title}</h1>
             </div>
             <div className={`single-content-icons ${hover === true && 'hover'}`}>
-            <i title='save the changes' class="fas fa-save" onClick={()=>updateHandler(query._id, title.current.innerHTML, content.current.innerHTML)}></i>
-            <i title='edit' class="fas fa-edit"></i>
-            <i   title='delete' class="fas fa-trash-alt" onClick={()=>{contentDeleteHandler(query._id);}}></i>
+            <i title='save the changes' className="fas fa-save" onClick={()=>updateHandler(query._id, title.current.innerHTML, content.current.innerHTML)}></i>
+            <i title='edit' className="fas fa-edit"></i>
+            <i   title='delete' className="fas fa-trash-alt" onClick={()=>{contentDeleteHandler(query._id);}}></i>
             </div>
             </div>
             {toggleContentHandler()}
