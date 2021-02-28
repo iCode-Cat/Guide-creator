@@ -20,4 +20,11 @@ router.route('/content')
 .put(appController.content_put)
 .delete(appController.content_delete)
 
+//Create page
+router.route('/page')
+.get(appController.page_get)
+.post(appController.page_post)
+.put(appController.page_put)
+.delete(appController.page_delete)
+
 module.exports = router;

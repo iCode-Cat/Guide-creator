@@ -12,7 +12,7 @@ const Main = () => {
         <div className="main-container">
              <BrowserRouter>
             <Titles className='titles'/>
-             <Route exact path='/:id' component={TitleContent}/>
+             <Route path='/main/:id' component={TitleContent}/>
             </BrowserRouter>
         </div>
     )

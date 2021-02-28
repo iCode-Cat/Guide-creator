@@ -21,15 +21,19 @@ function TitleContent({setContent, content,history}) {
   }
 
     console.log(removeContent);
-
+    
     useEffect(()=>{
-        return content.content.content !== null ? setResId(content.content.content) :  setResId(history.location.pathname.replace('/', ''))
+        const path = history.location.pathname;
+        return content.content.content !== null ? setResId(content.content.content) :  setResId(path.slice(path.lastIndexOf('/') +1))
+        
     })
 
+    console.log(resId);
+    
 
    //Find id
     useEffect(()=>{
-     
+        
         axios.post('http://localhost:5000/find', {_id:resId})
         .then((res) => setContents(...res.data))
         findComponentHandler(resId, find)

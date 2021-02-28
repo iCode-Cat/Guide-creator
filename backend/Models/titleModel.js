@@ -8,7 +8,9 @@ const titleSchema = new mongoose.Schema({
     
     content:{
         type:Array
-    }
+    },
+    
+    page_id:String
 
 })
 

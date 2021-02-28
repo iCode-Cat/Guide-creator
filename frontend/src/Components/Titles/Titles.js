@@ -50,7 +50,7 @@ function Titles({setContent}) {
         return (
             <div className="title-content-holder">
             <div className="titles-holder">
-            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
+            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={'/main/'+titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
             </div>
             </div>
         )
