@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const pageSchema = new mongoose.Schema({
 
     
-    page_name:String
+    page_name:String,
+    username:String
 
 })
 

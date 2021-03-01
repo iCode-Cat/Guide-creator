@@ -150,6 +150,8 @@ module.exports.content_delete = async (req, res) => {
 //Create page
 module.exports.page_get = async (req, res) => {
 
+    const {user, page_name} = req.body;
+
    try {
     const find = await Page.find()
     const results = await res.header(200).send(find)
@@ -160,12 +162,15 @@ module.exports.page_get = async (req, res) => {
 }
 
 module.exports.page_post = async (req, res) => {
+    
+    const {user, page_name} = req.body;
 
     //Create a page
     try {
         
-        const create = await Page.create({})
+        const create = await Page.create(req.body)
         const send = await res.header(200).send(create)
+        console.log(req.body);
 
     } catch (error) {
         const err = await res.header(400).send(error)
