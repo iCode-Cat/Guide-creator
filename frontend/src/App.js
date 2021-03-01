@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
       <Link to='/'><Header className='header'/></Link>
       <Route exact path='/'> <CreatePage/></Route>
-      <Route path='/main'><Main/></Route>
+      <Route path='/:id'><Main/></Route>
       </BrowserRouter>
       </Provider>
     </div>

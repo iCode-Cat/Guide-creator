@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import './CreatePage.scss';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {setPages} from '../Redux/pageReducer/page.action'
 import CreatedPages from './CreatedPages/CreatedPages';
-function CreatePage() {
+function CreatePage({setPages}) {
 
     const [page , setPage] = useState();
     //If no content manage err code or alert
@@ -13,6 +16,7 @@ function CreatePage() {
 
    useEffect(() => {
    fetchPostHandler()
+   
    }, [])
 
 
@@ -51,8 +55,9 @@ function CreatePage() {
     const returnPageHandler = () => {
 
         if(page) {
-
-            return page.map((pages) => <CreatedPages pages={pages} />  )
+            
+            //On link click, set redux page as its id. 
+            return page.map((pages) => <Link onClick={()=>{setPages(pages._id)}} to={'/'+pages._id}><CreatedPages pages={pages} /></Link>  )
 
         }
 
@@ -67,4 +72,11 @@ function CreatePage() {
     </div>
 }
 
-export default CreatePage
+const mapDispatchToProps = (dispatch) => ({
+
+    setPages: pageId => dispatch(setPages(pageId))
+
+
+})
+
+export default connect(null,mapDispatchToProps)(CreatePage)

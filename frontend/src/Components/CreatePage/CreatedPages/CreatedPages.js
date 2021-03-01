@@ -8,16 +8,10 @@ function CreatedPages({pages}) {
 
     const {page_name, username, _id} = pages;
 
-    const alerts = (id) => {
-
-        alert(id)
-        history.push('/main')
-
-    }
 
     return (
         <div className="created-page-container add-box">
-            <h1 onClick={()=>{alerts(_id)}}>{page_name}</h1>
+            <h1>{page_name}</h1>
         </div>
     )
 }
