@@ -3,21 +3,26 @@ const Content = require('../Models/contentModel');
 const Page = require('../Models/pageModel');
 
 module.exports.title_get = async (req, res) => {
-    const find = await Guide.find((err, result) => {
+    
+    const {pageID} = req.query;
+    
+
+    const find = await Guide.find({page_id:pageID}, (err, result) => {
         return !err ? res.header(200).json(result) : ''
     })
+    .catch((err) =>console.log(err))
 }
 
 module.exports.title_post = async (req, res) => {
 
     const {
-        title
+        title, pageID
     } = req.body
 
 
     Guide.create({
         title: title,
-        content: []
+        page_id:pageID
     }, (err, result) => {
         return !err ? res.send(result) : res.send(err)
     })

@@ -11,22 +11,33 @@ import './Titles.scss';
 
 
 
-function Titles({setContent}) {
+function Titles({setContent, pageId}) {
 
     let history = useHistory()
+    let pageID =  pageId.page.pageId;
+    const titlePath = history.location.pathname;
+
+    console.log(titlePath.replace('/', ''));
 
     const titleFetchHandler = () => {
-        axios.get('http://localhost:5000/title')
+        if(pageID  === null) {
+            pageID = titlePath.replace('/', '')
+        }else{
+            pageID =  pageId.page.pageId;
+        }
+        axios.get(`http://localhost:5000/title?pageID=${pageID}`)
             .then((res) => setTitle(res.data))
     }
     useEffect(()=>{
         titleFetchHandler()
     }, [])
 
+    
+
 
     const titlePostHandler = async (title) => {
 
-       const post = await axios.post('http://localhost:5000/title', {title})
+       const post = await axios.post('http://localhost:5000/title', {title, pageID})
        titleFetchHandler()
 
     }
@@ -50,7 +61,7 @@ function Titles({setContent}) {
         return (
             <div className="title-content-holder">
             <div className="titles-holder">
-            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={'/:id/'+titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
+            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={`/${pageId.page.pageId}/`+titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
             </div>
             </div>
         )
@@ -70,11 +81,16 @@ function Titles({setContent}) {
 
 
    
+const mapStateToProps = state => ({
+    pageId: state
+
+})
   
+
 
   const mapDispatchToProps = dispatch => ({
     setContent: content => dispatch(setContent(content))
 })
 
 
-export default connect(null, mapDispatchToProps)(Titles)
+export default connect(mapStateToProps, mapDispatchToProps)(Titles)
