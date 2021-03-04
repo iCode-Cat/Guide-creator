@@ -4,8 +4,10 @@ import Main from './Components/Main/Main';
 import {Provider} from 'react-redux';
 import store from './Components/Redux/store'
 import Header from './Components/Header/Header';
-import {NavLink , Link , BrowserRouter, Route} from 'react-router-dom';
+import {NavLink , Link , BrowserRouter, Route, Switch} from 'react-router-dom';
 import CreatePage from './Components/CreatePage/CreatePage';
+import Register from './Components/Auth/Register/Register';
+import Login from './Components/Auth/Login/Login';
 
 function App() {
 
@@ -16,9 +18,14 @@ function App() {
     <div className="App">
       <Provider store={store}>
       <BrowserRouter>
+      
       <Link to='/'><Header className='header'/></Link>
+      <Switch>
+      <Route exact path='/register' component={Register} />
+      <Route exact path='/login' component={Login} />
       <Route exact path='/'> <CreatePage/></Route>
       <Route path='/:id'><Main/></Route>
+      </Switch>
       </BrowserRouter>
       </Provider>
     </div>
