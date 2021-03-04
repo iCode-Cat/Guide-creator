@@ -35,3 +35,8 @@ a {
   color: rgb(160, 153, 253) !important;
 
 }
+
+
+[contenteditable] {
+  color: #333;
+}

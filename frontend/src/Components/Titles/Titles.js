@@ -17,14 +17,26 @@ function Titles({setContent, pageId}) {
     let pageID =  pageId.page.pageId;
     const titlePath = history.location.pathname;
 
-    console.log(titlePath.replace('/', ''));
+    const urlHandler = () => {
 
-    const titleFetchHandler = () => {
         if(pageID  === null) {
             pageID = titlePath.replace('/', '')
+    
+            if(titlePath.length > 26) {
+               pageID = titlePath.slice(0 , titlePath.lastIndexOf('/')).replace('/', '')
+            }
+    
         }else{
             pageID =  pageId.page.pageId;
         }
+
+    }
+
+    urlHandler()
+
+    const titleFetchHandler = () => {
+        
+        
         axios.get(`http://localhost:5000/title?pageID=${pageID}`)
             .then((res) => setTitle(res.data))
     }
@@ -61,7 +73,7 @@ function Titles({setContent, pageId}) {
         return (
             <div className="title-content-holder">
             <div className="titles-holder">
-            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={`/${pageId.page.pageId}/`+titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
+            { title.map((titles)=>(<NavLink onClick={()=>{setContent(titles._id)}} to={`/${pageID}/`+titles._id}><Title  titleDeleteOneHandler={titleDeleteOneHandler} key={Math.random()*999} titles={titles} /></NavLink>))}
             </div>
             </div>
         )
