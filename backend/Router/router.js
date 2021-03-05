@@ -1,30 +1,48 @@
 const {Router} = require('express');
-const appController = require('../Controller/appController');
+const titleController = require('../Controller/titleController');
+const contentController = require('../Controller/contentController');
+const pageController = require('../Controller/pageController');
+const signupController = require('../Controller/signupController');
 const router = Router();
 
 //Main router title
 router.route('/title')
-.get(appController.title_get)
-.post(appController.title_post)
-.put(appController.title_put)
-.delete(appController.title_delete)
+.get(titleController.title_get)
+.post(titleController.title_post)
+.put(titleController.title_put)
+.delete(titleController.title_delete)
 
 //Find datas
 router.route('/find')
-.post(appController.title_find)
+.post(titleController.title_find)
 
 //Content data
 router.route('/content')
-.get(appController.content_get)
-.post(appController.content_post)
-.put(appController.content_put)
-.delete(appController.content_delete)
+.get(contentController.content_get)
+.post(contentController.content_post)
+.put(contentController.content_put)
+.delete(contentController.content_delete)
 
 //Create page
 router.route('/page')
-.get(appController.page_get)
-.post(appController.page_post)
-.put(appController.page_put)
-.delete(appController.page_delete)
+.get(pageController.page_get)
+.post(pageController.page_post)
+.put(pageController.page_put)
+.delete(pageController.page_delete)
+
+//User registration
+router.route('/register')
+.get(signupController.register_get)
+.post(signupController.register_post)
+.put(signupController.register_put)
+.delete(signupController.register_delete)
+
+//User Login
+router.route('/login')
+.get(signupController.login_get)
+.post(signupController.login_post)
+.put(signupController.login_put)
+.delete(signupController.login_delete)
+
 
 module.exports = router;

@@ -24,7 +24,7 @@ const formHandler = (username, password) => {
             <label htmlFor="username">USERNAME</label>
             <input ref={username} required type="email"/>
             <label htmlFor="username">PASSWORD</label>
-            <input minLength='3' ref={password} required type="password"/>
+            <input minLength='6' ref={password} required type="password"/>
             <button type="submit">REGISTER</button>
         </form>
     </div>
