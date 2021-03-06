@@ -2,6 +2,9 @@ const Guide = require('../Models/titleModel');
 
 
 
+
+
+
 module.exports.title_get = async (req, res) => {
 
     const {
@@ -17,6 +20,7 @@ module.exports.title_get = async (req, res) => {
         .catch((err) => console.log(err))
 }
 
+
 module.exports.title_post = async (req, res) => {
 
     const {
@@ -24,6 +28,7 @@ module.exports.title_post = async (req, res) => {
         pageID
     } = req.body
 
+  
 
     Guide.create({
         title: title,

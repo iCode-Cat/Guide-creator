@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import axios from 'axios';
 import './Login.scss'
 
 const Login = () => {
@@ -9,11 +10,17 @@ const [form , setForm] = useState(null);
 const username = useRef();
 const password = useRef();
 
+const postHandler = async (username, password) => {
+
+    const post = await axios.post('http://localhost:5000/login' , {username, password})
+
+}
+
 const formHandler = (event, username, password) => {
 
     event.preventDefault();
     //Write your code here 
-    console.log(username);
+    postHandler(username, password)
 
 
     }

@@ -1,9 +1,18 @@
 import React, {useState, useRef} from 'react';
 import './Register.scss'
+import axios from 'axios';
 
 const Register = () => {
 
 const [form , setForm] = useState(null);
+
+const postHandler = async (username, password) => {
+
+    const posts = await axios.post('http://localhost:5000/register' , {username, password})
+    .then((result)=>console.log(result))
+    .catch((err) => console.log(err.response.data))
+
+}
 
 //Refs
 const username = useRef();
@@ -11,9 +20,8 @@ const password = useRef();
 
 const formHandler = (username, password) => {
 
-    //Write your code here 
-    console.log(username);
-
+    //Post info to backend
+    postHandler(username,password)
 
     }
 
