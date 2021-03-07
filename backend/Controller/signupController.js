@@ -67,13 +67,29 @@ module.exports.register_delete = async (req, res) => {}
 
 //Login controller
 
-//Get
-module.exports.login_get = async (req, res) => {}
-//Post
+//Login users
+
 module.exports.login_post = async (req, res) => {
+    
+
+    const {username , password} = req.body;
+
     console.log(req.body);
+    //Check whether user email exists
+    const user = await User.findOne({ username })
+    console.log(user);
+    if (!user) return res.status(400).send('Incorrect Email')
+    
+    //Checking whether user password matches
+    const validPassword = await bcrypt.compare(password, user.password);
+    if(!validPassword) return res.status(400).send('Incorrect password!');
+    res.send('Success!')
+
 }
-//Update
+
+
+module.exports.login_get = async (req, res) => {}
+
 module.exports.login_put = async (req, res) => {}
-//Delete
+
 module.exports.login_delete = async (req, res) => {}
