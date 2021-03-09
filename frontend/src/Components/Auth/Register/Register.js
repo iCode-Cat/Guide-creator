@@ -11,6 +11,7 @@ const postHandler = async (username, password) => {
     const posts = await axios.post('http://localhost:5000/register' , {username, password})
     .then((result)=>console.log(result))
     .catch((err) => console.log(err.response.data))
+    
 
 }
 
