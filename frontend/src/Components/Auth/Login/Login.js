@@ -1,4 +1,5 @@
 import React, {useState, useRef} from 'react';
+import cookies from 'universal-cookie';
 import axios from 'axios';
 import './Login.scss'
 
@@ -13,8 +14,11 @@ const password = useRef();
 const postHandler = async (username, password) => {
 
     const post = await axios.post('http://localhost:5000/login' , {username, password})
-    .then((result)=> console.log(result))
-    .catch((err) => console.log(err.response.data))
+    .then((result)=> {
+        sessionStorage.setItem('jwt' , JSON.stringify(result.data.token))
+        cookies.set('myCat', 'Pacman', { path: '/login' });
+    })
+    .catch((err) => console.log(err.response))
 
 }
 
@@ -23,7 +27,7 @@ const formHandler = (event, username, password) => {
     event.preventDefault();
     //Write your code here 
     postHandler(username, password)
-
+    
 
     }
 

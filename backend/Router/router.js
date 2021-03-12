@@ -3,7 +3,9 @@ const titleController = require('../Controller/titleController');
 const contentController = require('../Controller/contentController');
 const pageController = require('../Controller/pageController');
 const signupController = require('../Controller/signupController');
+const {requireAuth} = require('../middleware/authMiddleware')
 const router = Router();
+
 
 //Main router title
 router.route('/title')
